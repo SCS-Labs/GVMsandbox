@@ -1,6 +1,6 @@
-########
+##################################
 # Build
-########
+##################################
 FROM ubuntu:20.04 as build
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -108,36 +108,38 @@ COPY --from=build-gvmd /usr/local/ /install/gvmd
 COPY --from=build-openvas_scanner /usr/local/ /install/openvas_scanner
 COPY --from=build-gsa /usr/local/ /install/gsa
 
-############
+
+
+##################################
 # Base
-############
+##################################
 FROM ubuntu:20.04 
-RUN /base/install-pkgs.sh
+RUN bash /base/install-pkgs.sh
+RUN bash /base/baseenv.sh
 COPY --from=SCS-labs/gvm:build-20.8 /install/gvm_libs/ /usr/local/
 COPY --from=SCS-labs/gvm:build-20.8 /install/gvmd/bin/gvm-manage-certs /usr/local/bin/gvm-manage-certs
-COPY root/ /
-RUN bash /base/ baseenv.sh
+COPY modules/base/root/ /
 
-############
+##################################
 # GVM
-############
+##################################
 FROM SCS-labs/gvm:openvas-20.8
 RUN bash /gvm/install-pkgs.sh
 COPY --from=SCS-labs/gvm:build-20.8 /install/gvmd/ /install/gsa/ /usr/local/
 #Grab report_formats from previous version so they can be migrated in case of an upgrade
 COPY --from=SCS-labs/gvm:gvm-11 /usr/local/share/gvm/gvmd/report_formats/ /usr/local/share/gvm/gvmd/report_formats/
 RUN echo "abc ALL=(ALL) NOPASSWD: /usr/local/sbin/gsad" >> /etc/sudoers
-COPY root/ /
+COPY modules/gvm/root/ /
 
-############
+##################################
 # OpenVAS
-############
+##################################
 FROM SCS-labs/gvm:base-20.8
 RUN bash /openvas/install-pkgs.sh
 COPY --from=SCS-labs/gvm:build-20.8 /install/openvas_smb/ /install/openvas_scanner/ /usr/local/
 RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/openvas.conf && ldconfig
 RUN echo "abc ALL=(ALL) NOPASSWD: /usr/local/sbin/openvas" >> /etc/sudoers
-COPY root/ /
+COPY modules/openvas/root/ /
 
 
 
