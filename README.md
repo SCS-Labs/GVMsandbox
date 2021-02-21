@@ -22,7 +22,18 @@ Working on a new GVM Docker Container
 
 
 
+## Checkout New Branch for developing
 
+**Checkout Blank Repo**
 
+```shell
+git checkout blankrepo
+```
+
+**Checkout New Branch for Development**
+
+```shell
+git checkout -b ver#
+```
 
 
