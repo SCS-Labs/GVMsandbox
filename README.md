@@ -11,6 +11,11 @@ Working on a new GVM Docker Container
 
 ## Thinking About
 - Thinking about separating gvm components from Dockerfile and make them into separate scripts.
+- Thinking about add `SRC_PATH` variable that can work in `/src` and build in by using `${SRC_PATH}`
+
+
+
+
 
 ## NOTE:
 `ospd_openvas` is taken care of on [openVAS/install-pkgs.sh](/modules/openvas/install-pkgs.sh)
