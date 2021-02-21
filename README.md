@@ -13,7 +13,7 @@ Working on a new GVM Docker Container
 - Thinking about separating gvm components from Dockerfile and make them into separate scripts.
 
 ## NOTE:
-ospd_openvas="v20.8.1" is taken care of on [openVAS/install-pkgs.sh](/modules/openvas/install-pkgs.sh)
+`ospd_openvas` is taken care of on [openVAS/install-pkgs.sh](/modules/openvas/install-pkgs.sh)
 
 
 
