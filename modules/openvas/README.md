@@ -1,0 +1,1 @@
+This folder will contain OpenVAS and ospd-openvas requirements and dependencies.
