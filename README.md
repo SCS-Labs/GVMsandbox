@@ -9,8 +9,10 @@ Working on a new GVM Docker Container
 - Get add ssh for scanner so [baseenv.sh](/modules/base/baseenv.sh)
     - Remove username and password option for scanner 
 
+## Thinking About
+- Thinking about separating gvm components from Dockerfile and make them into separate scripts.
 
-### NOTE:
+## NOTE:
 ospd_openvas="v20.8.1" is taken care of on [openVAS/install-pkgs.sh](/modules/openvas/install-pkgs.sh)
 
 
