@@ -1,1 +1,0 @@
-This folder will contain files that control building of greenborne components
